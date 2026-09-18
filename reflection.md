@@ -53,6 +53,6 @@ New Game reset attempts and secret but left status as "won", and because session
 ## 5. Looking ahead: your developer habits
 
 - What is one habit or strategy from this project that you want to reuse in future labs or projects?
-  - This could be a testing habit, a prompting strategy, or a way you used Git.
-- What is one thing you would do differently next time you work with AI on a coding task?
-- In one or two sentences, describe how this project changed the way you think about AI generated code.
+  - This could be a testing habit, a prompting strategy, or a way you used Git. ( During the intial prompting the AI made some decision in code refactoring that i did not like after that i told it to make sure to confrim with me before making any changes)
+- What is one thing you would do differently next time you work with AI on a coding task? (Take more charge in tyhe eiditing process)
+- In one or two sentences, describe how this project changed the way you think about AI generated code.(AI  can complicate code so you should always be with it at each step to ensure it is doing the right thing)
