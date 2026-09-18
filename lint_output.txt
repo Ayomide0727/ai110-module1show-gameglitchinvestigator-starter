@@ -1,0 +1,76 @@
+Linting output for the Glitchy Guesser
+Tools: pycodestyle 2.14.0, pylint (naming/shadowing checks only)
+Interpreter: .venv\Scripts\python.exe
+
+================================================================
+BEFORE
+================================================================
+
+$ python -m pycodestyle --max-line-length=79 --statistics app.py logic_utils.py tests/
+
+app.py:38:1: E302 expected 2 blank lines, found 1
+tests/test_edge_cases.py:8:1: E302 expected 2 blank lines, found 1
+tests/test_edge_cases.py:16:1: E302 expected 2 blank lines, found 1
+tests/test_edge_cases.py:21:1: E302 expected 2 blank lines, found 1
+tests/test_edge_cases.py:26:1: E302 expected 2 blank lines, found 1
+tests/test_edge_cases.py:34:1: E302 expected 2 blank lines, found 1
+tests/test_edge_cases.py:42:1: E302 expected 2 blank lines, found 1
+tests/test_edge_cases.py:49:1: E302 expected 2 blank lines, found 1
+tests/test_edge_cases.py:54:1: E302 expected 2 blank lines, found 1
+tests/test_edge_cases.py:61:1: E302 expected 2 blank lines, found 1
+tests/test_edge_cases.py:68:1: E302 expected 2 blank lines, found 1
+tests/test_edge_cases.py:75:1: E302 expected 2 blank lines, found 1
+tests/test_edge_cases.py:82:1: E302 expected 2 blank lines, found 1
+tests/test_edge_cases.py:88:1: E302 expected 2 blank lines, found 1
+tests/test_edge_cases.py:95:1: E302 expected 2 blank lines, found 1
+tests/test_game_logic.py:3:1: E302 expected 2 blank lines, found 1
+tests/test_game_logic.py:8:1: E302 expected 2 blank lines, found 1
+tests/test_game_logic.py:13:1: E302 expected 2 blank lines, found 1
+tests/test_game_logic.py:24:1: E302 expected 2 blank lines, found 1
+tests/test_game_logic.py:31:1: E302 expected 2 blank lines, found 1
+tests/test_game_logic.py:36:1: E302 expected 2 blank lines, found 1
+tests/test_game_logic.py:43:80: E501 line too long (83 > 79 characters)
+tests/test_game_logic.py:45:80: E501 line too long (83 > 79 characters)
+
+21      E302 expected 2 blank lines, found 1
+2       E501 line too long (83 > 79 characters)
+
+Note: logic_utils.py reported zero violations on this run.
+
+$ python -m pylint --disable=all --enable=C0103,C0104,W0621,C0121,C0325,W0611,W0612 app.py logic_utils.py tests/
+
+************* Module app
+app.py:39:16: W0621: Redefining name 'low' from outer scope (line 33)
+app.py:39:21: W0621: Redefining name 'high' from outer scope (line 33)
+app.py:57:33: W0621: Redefining name 'low' from outer scope (line 33)
+app.py:57:38: W0621: Redefining name 'high' from outer scope (line 33)
+app.py:65:28: W0621: Redefining name 'outcome' from outer scope (line 158)
+************* Module logic_utils
+logic_utils.py:134:0: C0325: Unnecessary parens after 'not' keyword
+
+Your code has been rated at 9.74/10
+
+================================================================
+AFTER
+================================================================
+
+$ python -m pycodestyle --max-line-length=79 app.py logic_utils.py tests/
+pycodestyle exit: 0 (0 = clean)
+
+$ python -m pylint --disable=all --enable=C0103,C0104,W0621,C0121,C0325,W0611,W0612 app.py logic_utils.py tests/
+Your code has been rated at 10.00/10 (previous run: 9.74/10, +0.26)
+
+================================================================
+REGRESSION CHECKS AFTER THE RENAMES
+================================================================
+
+$ python -m pytest -q
+20 passed
+
+$ python -m doctest logic_utils.py
+(no output: all 24 docstring examples pass)
+
+$ AppTest run of app.py, secret pinned to 55, guesses 20/90/60/55
+sidebar bars: ['#1 20 up Cool', '#2 90 down Cool',
+               '#3 60 down Blazing', '#4 55 Exact']
+status: won | exceptions: 0
